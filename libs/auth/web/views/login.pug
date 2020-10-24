@@ -1,0 +1,32 @@
+extends layout
+
+block content
+	#login.center-vertical.shadow
+		form.card.card-body.bg-light(method='post')
+			h2 Hello!
+			h6 Please Login To Your Account
+			hr
+			.form-group
+				label Username
+				input.form-control(type='text', id='user-tf', name='username')
+			.form-group
+				label Password
+				input.form-control(type='password', id='pass-tf', name='password')
+			#row1
+				button(type='submit')#btn_sign_in.btn.btn-primary
+					span.fa.fa-lock
+					| Sign In
+			.btm-links
+				#create-account
+					a(href='/signup') Create An Account
+			hr
+			.btm-copyright#footer
+				| Copyright &#169; 2019
+				a#link(target="_blank", href='https://fahmialfareza.com')  Fahmialfareza.com
+
+	include modals/alert
+
+block scripts
+	script(src='/js/views/login.js')
+	script(src='/js/form-validators/loginValidator.js')
+	script(src='/js/form-validators/emailValidator.js')

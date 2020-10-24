@@ -1,0 +1,46 @@
+extends layout
+
+block content
+    - user = typeof(usr) != 'undefined' ? usr : { }
+    input#admin(type='hidden' name='admin' value=user.admin)
+
+    include navbar
+
+    #box-form-container.center-vertical
+        br
+        form.card.card-body.bg-light.shadow(method='post')#account-form
+            h3 Your Information Account
+            h6 Here are the current settings for your account.
+            hr
+            .collapse.show#collapseAccount
+                .form-group.row
+                    label.col-sm-3.col-form-label.col-form-label-sm Username
+                    .col-sm-9
+                        input.form-control#username-tf(readonly, type='text', name='username', value= user.username)
+
+                .form-group.row
+                    label.col-sm-3.col-form-label.col-form-label-sm Name
+                    .col-sm-9
+                        input.form-control#name-tf(type='text', name='name', value= user.name)
+
+                .form-group.row
+                    label.col-sm-3.col-form-label.col-form-label-sm Email
+                    .col-sm-9
+                        input.form-control#email-tf(type='email', name='email', value= user.email)
+
+                .form-group.row
+                    label.col-sm-3.col-form-label.col-form-label-sm Password
+                    .col-sm-9
+                        input.form-control#password-tf(type='password', name='password', value='')
+
+                .form-buttons
+                    button(type='button')#account-form-btn1.btn.btn-outline-dark
+                    button(type='submit')#account-form-btn2.btn.btn-primary
+    
+    include modals/alert
+    include modals/confirm
+    include modals/form-errors
+
+block scripts
+    script(src='/js/views/edit-account.js')
+    script(src='/js/form-validators/accountValidator.js')

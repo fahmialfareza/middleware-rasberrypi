@@ -1,0 +1,14 @@
+extends layout
+
+block content
+
+    include navbar
+    
+    include register
+
+    include modals/alert
+    include modals/confirm
+
+block scripts
+    script(src='/js/views/edit-things.js')
+    script(src='/js/form-validators/registerValidator.js')

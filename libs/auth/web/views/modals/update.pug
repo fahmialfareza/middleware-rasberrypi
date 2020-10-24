@@ -1,0 +1,26 @@
+form(action='/account' method='post')
+    #EditModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5#exampleModalLabel.modal-title Edit Product
+                    button.close(type='button' data-dismiss='modal' aria-label='Close')
+                        span(aria-hidden='true') &times;
+                .modal-body
+                    .form-group
+                        label Username
+                        input.form-control.username(type='text' name='username' placeholder='Username' required='' readonly)
+                    .form-group
+                        label Password
+                        input.form-control.password(type='password' name='password' placholder='Password')
+                    .form-group
+                        label Email
+                        input.form-control.email(type='email' name='email' placeholder='Email' required='')
+                    .form-group
+                        label Name
+                        input.form-control.name(type='text' name='name' placeholder='Name' required='')
+
+                .modal-footer
+                    input.product_id(type='hidden' name='id')
+                    button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+                    button.btn.btn-primary(type='submit') Update

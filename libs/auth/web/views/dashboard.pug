@@ -1,0 +1,78 @@
+extends layout
+
+block content
+    - user = typeof(usr) != 'undefined' ? usr : { }
+    - things = typeof(things) != 'undefined' ? things : { }
+    input(type='hidden', value= user.admin)#useradmin
+
+    include navbar
+
+    .jumbotron.jumbotron-fluid.bg-light
+        .container
+            h1.display-4.text-capitalize#welcome-user
+            p.lead This is your home page
+            hr
+
+    .container
+            br
+            form.card.card-body.bg-light.shadow(method='post')#account-form
+                h3
+                    a.text-decoration-none(style='color:black;', data-toggle='collapse', href="#collapseAccount", role='button') Your Information Account 
+                        span.justify-content-end.dropdown-toggle
+                h6 Here are the current settings for your account.
+                hr
+                .collapse.show#collapseAccount
+                    .form-group.row
+                        label.col-sm-3.col-form-label.col-form-label-sm Name
+                        .col-sm-9
+                            input.form-control#name-tf(readonly, type='text', name='name', value= user.name)
+
+                    .form-group.row
+                        label.col-sm-3.col-form-label.col-form-label-sm Email
+                        .col-sm-9
+                            input.form-control#email-tf(readonly, type='email', name='email', value= user.email)
+
+                    .form-group.row
+                        label.col-sm-3.col-form-label.col-form-label-sm Username
+                        .col-sm-9
+                            input.form-control#usrname-tf(readonly, type='text', name='user', value= user.username)
+                    hr
+                    if user.admin == 0
+                        .form-group.row
+                            label.col-sm-3.col-form-label.col-form-label-sm Things
+                            .col-sm-9
+                                input.form-control(readonly, type='text', name='things', value= things.length)
+
+                        .form-group.row
+                            label.col-sm-3.col-form-label.col-form-label-sm Active Topics
+                            .col-sm-9
+                                each thing in things
+                                    if thing.topic != null
+                                        input.form-control(readonly, value= thing.topic)
+                                else
+                                    input.form-control(readonly, value= 0)
+
+    if user.admin == 1
+        br
+    else
+        br
+        .container
+            br
+            form.card.card-body.bg-light.shadow
+                h3#page-header
+                    a.text-decoration-none#page-header(style='color:black;', data-toggle='collapse', href="#collapseThings", role='button') List Your Things 
+                        span.badge.badge-secondary.dropdown-toggle= things.length
+                hr
+                .collapse#collapseThings
+                    .card-columns
+        br
+
+    include modals/alert
+    include modals/confirm
+    include modals/form-errors
+
+    include footer
+
+block scripts
+    script(src='/js/views/dashboard.js')
+    script(src='/js/form-validators/accountValidator.js')

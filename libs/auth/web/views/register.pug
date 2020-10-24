@@ -1,0 +1,56 @@
+- things = typeof(things) != 'undefined' ? things : { }
+
+#box-form-container.center-vertical.shadow
+	form.card.card-body.bg-light(method='post')#register-form
+		h2
+		h6#sub
+		hr
+		p#head-collapse
+			a.text-decoration-none.dropdown-toggle.btn.btn-primary(data-toggle='collapse', href="#collapseExample", role='button') Security Information 
+		.collapse(id="collapseExample")
+			.form-group.row
+				label.col-sm-4.col-form-label.col-form-label-sm#id-lb Things ID
+				.col-sm-7
+					input.form-control#id-tf(type='text', name='things_id', value=things.things_id)
+			
+			.form-group.row
+				label.col-sm-4.col-form-label.col-form-label-sm#pwd-lb Things Password
+				.col-sm-7
+					input.form-control#pwd-tf(type='text', name='things_password', value=things.things_password)
+					
+			hr
+
+		.form-group.row
+			label.col-sm-4.col-form-label.col-form-label-sm Things Name
+			.col-sm-7
+				input.form-control#name-tf(type='text', name='things_name', value=things.things_name)
+
+		.form-group.row
+			label.col-sm-4.col-form-label.col-form-label-sm Role
+			.col-sm-7
+				select.form-control#role-tf(name='role')
+					if things.role == 'publisher'
+						option(value='', disabled='') Select role
+						option(selected='') publisher
+						option subscriber
+					else if things.role == 'subscriber'
+						option(value='', disabled='') Select role
+						option publisher
+						option(selected='') subscriber
+					else
+						option(value='', disabled='', selected='') Select role
+						option publisher
+						option subscriber
+
+		.form-group.row
+			label.col-sm-4.col-form-label.col-form-label-sm Description
+			.col-sm-7
+				input.form-control#desc-tf(type='text', name='description' value=things.description)
+
+		hr
+		.form-buttons
+			button(type='button')#register-form-btn1.btn.btn-outline-dark
+			button(type='submit')#register-form-btn2.btn.btn-primary
+			button(type='button')#register-form-btn3.btn.btn-outline-dark
+
+include modals/form-errors

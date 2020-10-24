@@ -1,0 +1,21 @@
+doctype html
+html
+	head
+		title Auth | #{title}
+		meta(charset='utf-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+		link(rel='stylesheet' href='/css/bootstrap.min.css')
+		link(rel='stylesheet', href='/css/all.min.css')
+		link(rel='stylesheet', href='/css/style.css')
+		link(rel='stylesheet', href='/css/jquery.dataTables.min.css')
+		link(rel='icon', href='/image/icon.png')
+	body
+		#loading
+		block content
+		script(src="/js/jquery-3.4.1.min.js")
+		script(src="/js/bootstrap.min.js")
+		script(src="/js/jquery.form.min.js")
+		script(src="/js/jquery.dataTables.min.js")
+		script.
+			$(window).on('load', function() { $("#loading").fadeOut("slow"); })
+		block scripts

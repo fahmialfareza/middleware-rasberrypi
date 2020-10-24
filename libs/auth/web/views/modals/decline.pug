@@ -1,0 +1,14 @@
+form(action='/decline' method='post')
+    #DeclineModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true')
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    h5#myModalLabel.modal-title Decline Account
+                    button.close(type='button' data-dismiss='modal' aria-label='Close')
+                        span(aria-hidden='true') &times;
+                .modal-body
+                    strong#textDecline
+                .modal-footer
+                    input.form-control.username(type='hidden' name='username' required='')
+                    button.btn.btn-default(type='button' data-dismiss='modal') Close
+                    button.btn.btn-danger(type='submit') Decline

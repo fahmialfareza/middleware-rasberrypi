@@ -1,0 +1,59 @@
+extends layout
+
+block content
+
+    include navbar
+
+    .container#osutils
+        br
+        form.card.card-body.bg-light.shadow
+            h3#stats-header
+                a.text-decoration-none#stats-header(style='color:black;', data-toggle='collapse', href="#collapseOs", role='button') Information System
+            h6#countdown
+            hr
+            .collapse#collapseOs
+                .form-group.row
+                    label.col-sm-3.col-form-label.col-form-label-sm Platform
+                    .col-sm-9
+                        p.form-control(disabled='')#platform
+                    label.col-sm-3.col-form-label.col-form-label-sm Uptime
+                    .col-sm-9
+                        p.form-control(disabled='')#uptime
+                    label.col-sm-3.col-form-label.col-form-label-sm CPUs
+                    .col-sm-9
+                        p.form-control(disabled='')#cpus
+                    label.col-sm-3.col-form-label.col-form-label-sm CPU Usage
+                    .col-sm-9
+                        p.form-control(disabled='')#cpu-usage
+                    label.col-sm-3.col-form-label.col-form-label-sm CPU Free
+                    .col-sm-9
+                        p.form-control(disabled='')#cpu-free
+                    label.col-sm-3.col-form-label.col-form-label-sm Total Memory
+                    .col-sm-9
+                        p.form-control(disabled='')#total-memory
+                    label.col-sm-3.col-form-label.col-form-label-sm Used Memory
+                    .col-sm-9
+                        p.form-control(disabled='')#used-memory
+                    label.col-sm-3.col-form-label.col-form-label-sm Free Memory
+                    .col-sm-9
+                        p.form-control(disabled='')#free-memory
+    
+    .container#chart
+        br
+        form.card.card-body.bg-light.shadow
+            h3#stats-header
+                a.text-decoration-none#stats-header(style='color:black;', data-toggle='collapse', href="#collapseOs", role='button') Chart
+            hr
+            .row
+                .col-md-6
+                    #chartCpu
+                .col-md-6
+                    #chartMem
+    
+    include modals/alert
+    include footer
+
+block scripts
+    script(src='https://cdn.jsdelivr.net/npm/apexcharts')
+    //- script(src='/js/chart.js')
+    script(src='/js/views/sysutils.js')

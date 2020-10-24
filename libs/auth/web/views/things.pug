@@ -1,0 +1,18 @@
+extends layout
+
+block content
+
+    include navbar
+
+    .container
+        br
+        form.card.card-body.bg-light.shadow
+            h3#page-header List Your Things 
+            hr
+            .card-columns
+    
+    include modals/alert
+    include modals/confirm
+
+block scripts
+    script(src='/js/views/things.js')

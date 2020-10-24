@@ -1,0 +1,77 @@
+extends layout
+
+block content
+
+	include navbar
+	
+	div.container(style='margin:20px auto')
+		.card.card-body.bg-light.shadow
+			h3#page-header
+				a.text-decoration-none List Accounts
+			hr
+			.table-responsive-sm
+				button.btn.btn-success(data-toggle="modal" data-target="#myModalAdd" style="margin-bottom:5px;") Add Account
+				table.table.table-hover#account-table
+					thead.thead-light
+						tr
+							th Username
+							th Name
+							th Email
+							th Account Created
+							th Role
+							th Action
+					tbody
+						each val in accts
+							tr
+								td= val.username
+								td= val.name
+								td= val.email
+								td= val.date
+								td
+									if (val.admin == 1)
+										a.btn.btn-sm.btn-primary.disabled.role(href='javascript:void(0);' data-username=val.username) admin
+									else
+										a.btn.btn-sm.btn-secondary.disabled.role(href='javascript:void(0);' data-username=val.username) user
+								td
+									a.btn.btn-sm.btn-info.edit(href='javascript:void(0);' data-username=val.username data-email=val.email data-name=val.name) Edit
+									a.btn.btn-sm.btn-danger.delete(href='javascript:void(0);' data-username=val.username) Delete
+									if val.approved == 1
+										a.btn.btn-sm.btn-dark.decline(href='javascript:void(0);' data-username=val.username) Decline
+									else
+										a.btn.btn-sm.btn-success.approve(href='javascript:void(0);' data-username=val.username) Approve
+		br
+		.card.card-body.bg-light.shadow
+			h3#page-header
+				a.text-decoration-none List Things
+			hr
+			.table-responsive-sm
+				table.table.table-hover#things-table
+					thead.thead-light
+						tr
+							th User
+							th Things Name
+							th Role
+							th Topic
+							th Description
+							th Things Created
+					tbody
+						each val in thing
+							- if (!val.topic) val.topic='Not available yet'
+							tr
+								td= val.user
+								td= val.things_name
+								td= val.role
+								td= val.topic
+								td= val.description
+								td= val.date
+
+	include modals/approve
+	include modals/decline
+	include modals/delete
+	include modals/update
+	include modals/add-account
+	include modals/form-errors
+	include modals/alert
+
+block scripts
+	script(src='/js/views/print.js')
